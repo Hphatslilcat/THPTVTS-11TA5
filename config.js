@@ -33,7 +33,7 @@ const messageForGirls11TA5 = [
 // 2. Now define the main config object
 window.letterConfig = {
 
-    specialNames: ["Tập Thể Nữ 11TA5", "11TA5", "Cả lớp", "Mấy bà 11TA5", "test1"],
+    specialNames: ["Tập Thể Nữ 11TA5", "Nữ 11TA5", "Cả lớp", "Mấy bà 11TA5", "test1"],
 
     custom: {
         // Individual secrets
@@ -111,3 +111,4 @@ window.letterConfig = {
         "Hôm nay là ngày đặc biệt dành cho {name},"
     ]
 };
+
