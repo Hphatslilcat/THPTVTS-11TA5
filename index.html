@@ -628,14 +628,14 @@ document.getElementById('start-btn').onclick=()=>{
 };
 
 /* ================= OPEN LETTER ================= */
+/* ================= OPEN LETTER ================= */
 document.getElementById('ok-btn').onclick = () => {
     const name = document.getElementById('name-input').value.trim();
     if (!name) return;
 
     const config = window.letterConfig;
-
     if (!config) {
-        alert("Lỗi: Không tìm thấy file config.js! Hãy chắc chắn rằng file nằm cùng thư mục với file HTML.");
+        alert("Lỗi: Không tìm thấy file config.js!");
         return;
     }
 
@@ -650,13 +650,24 @@ document.getElementById('ok-btn').onclick = () => {
     const nameLower = name.toLowerCase();
     let letter = null;
 
+    // 1. Find if the name exists in custom config
     const specialKey = Object.keys(config.custom || {}).find(
         key => key.toLowerCase() === nameLower
     );
 
     if (specialKey) {
-        letter = config.custom[specialKey];
+        const customData = config.custom[specialKey];
+        
+        // FIX: Check if there are multiple messages (Array) for this person
+        if (Array.isArray(customData)) {
+            // Pick one random message from their list
+            letter = customData[Math.floor(Math.random() * customData.length)];
+        } else {
+            // Only one message exists
+            letter = customData;
+        }
     } else {
+        // 2. Fallback to random default message
         const defaults = config.default || [];
         letter = defaults[Math.floor(Math.random() * defaults.length)];
     }
@@ -674,20 +685,18 @@ document.getElementById('ok-btn').onclick = () => {
 
             setTimeout(() => {
                 typeWrite('letter-title', "🌹 Chúc mừng 8/3!", 40, () => {
-                    // Inside your ok-btn click function:
-typeWrite('letter-greeting', greeting, 40, () => {
-    let msg = Array.isArray(letter.message)
-        ? letter.message.join("\n\n")
-        : letter.message;
+                    typeWrite('letter-greeting', greeting, 40, () => {
+                        // Prepare the message text
+                        let msg = Array.isArray(letter.message)
+                            ? letter.message.join("\n\n")
+                            : letter.message;
 
-    // ADD THIS LINE BELOW to swap {name} with the real name!
-    msg = msg.replaceAll('{name}', name); 
+                        // Replace {name} placeholder
+                        msg = msg.replaceAll('{name}', name); 
 
-    typeWrite('letter-body', msg, 25, () => {
-                            // Ensure the footer types after the body
+                        typeWrite('letter-body', msg, 25, () => {
                             typeWrite('letter-footer', `-- ${letter.sender} --`, 40);
                             
-                            // Simple auto-scroll to show the end of long letters
                             const contentDiv = document.querySelector('.letter-content');
                             contentDiv.scrollTo({ top: contentDiv.scrollHeight, behavior: 'smooth' });
                         });
@@ -696,8 +705,7 @@ typeWrite('letter-greeting', greeting, 40, () => {
             }, 1200);
         }, 800);
     }, 1500);
-};    /* ================= RESET ================= */
-
+};
 /* ================= RESET ================= */
 function resetToMenu() {
     // 1. Clear old letter content so it's fresh for the next name
@@ -761,4 +769,3 @@ window.onresize=initBg;
 </script>
 </body>
 </html>
-
