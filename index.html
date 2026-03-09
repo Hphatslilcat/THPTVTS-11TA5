@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>8/3 Surprise - Lilcat Gng Edition</title>
+    <title>8/3 Surprise - Lilcat</title>
     <script src="config.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap');
@@ -616,13 +616,16 @@ document.getElementById('start-btn').onclick=()=>{
 };
 
 /* ================= OPEN LETTER ================= */
+/* ================= OPEN LETTER ================= */
 document.getElementById('ok-btn').onclick = () => {
     const name = document.getElementById('name-input').value.trim();
     if (!name) return;
 
-    // Safety check: Make sure config is loaded
-    if (!window.letterConfig) {
-        console.error("Config not found!");
+    // Look for the config in the global window
+    const config = window.letterConfig;
+
+    if (!config) {
+        alert("Lỗi: Không tìm thấy file config.js! Hãy chắc chắn rằng file nằm cùng thư mục với file HTML.");
         return;
     }
 
@@ -635,22 +638,19 @@ document.getElementById('ok-btn').onclick = () => {
     );
 
     const nameLower = name.toLowerCase();
-    
-    // Check custom names first
     let letter = null;
-    const customEntries = window.letterConfig.custom || {};
-    
-    // Find key in custom object
-    const specialKey = Object.keys(customEntries).find(
+
+    // Find custom names
+    const specialKey = Object.keys(config.custom || {}).find(
         key => key.toLowerCase() === nameLower
     );
 
     if (specialKey) {
-        letter = customEntries[specialKey];
+        letter = config.custom[specialKey];
     } else {
-        // Fallback to random default
-        const defaultLetters = window.letterConfig.default || [];
-        letter = defaultLetters[Math.floor(Math.random() * defaultLetters.length)];
+        // Fallback to random default from config.js
+        const defaults = config.default || [];
+        letter = defaults[Math.floor(Math.random() * defaults.length)];
     }
 
     const greeting = getRandomOpening(name);
@@ -742,4 +742,5 @@ window.onresize=initBg;
 </script>
 </body>
 </html>
+
 
