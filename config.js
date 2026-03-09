@@ -1,6 +1,6 @@
 // config.js
 
-const letterConfig = {
+window.letterConfig = {
 
     // Names that trigger special messages
     specialNames: [
@@ -48,29 +48,39 @@ const letterConfig = {
     default: [
 
         {
-            sender: "Lilcat 🐱",
+            sender: "Nam 11TA5 🦾",
             message: [
-                "Chúc bạn một ngày 8/3 thật ý nghĩa.",
-                "Mong rằng hôm nay bạn sẽ nhận được thật nhiều lời chúc, hoa và niềm vui.",
-                "Hãy luôn tỏa sáng theo cách của riêng mình nhé!"
+                "Thay mặt các bạn nam 11TA5, chúc bạn một ngày 8/3 rực rỡ.",
+                "Cảm ơn các bạn đã là những mảnh ghép tuyệt vời của lớp mình.",
+                "Chúc bạn luôn xinh đẹp, học giỏi và mãi là niềm tự hào của 11TA5!"
             ]
         },
 
         {
-            sender: "Lilcat 🐱",
+            sender: "Nam 11TA5 🦾",
             message: [
-                "Happy Women's Day!",
-                "Chúc bạn luôn xinh đẹp, mạnh mẽ và hạnh phúc.",
-                "Mong rằng mọi điều tốt đẹp sẽ luôn đến với bạn."
+                "Chúc các bạn nữ 11TA5 hôm nay nhận được 'cơn mưa' quà và lời chúc nhé.",
+                "Mong bạn luôn giữ vững phong độ, thi cử đỗ đạt và luôn vui tươi.",
+                "Hôm nay các bạn là nhất, không ai tranh giành đâu!"
             ]
         },
 
         {
-            sender: "Tập thể 11TA5 💖",
+            sender: "Nam 11TA5 🦾",
             message: [
-                "Chúc bạn một ngày 8/3 thật vui vẻ.",
-                "Cảm ơn vì đã làm cho lớp học của chúng ta trở nên tuyệt vời hơn.",
-                "Hy vọng bạn sẽ luôn giữ được nụ cười thật tươi!"
+                "Gửi tới bạn những lời chúc tốt đẹp nhất từ hội con trai 11TA5.",
+                "Chúc bạn ngày 8/3 không chỉ vui mà còn nhận được thật nhiều yêu thương.",
+                "Mãi là bông hoa xinh đẹp nhất của lớp mình nhé!"
+            ]
+        },
+
+        {
+            sender: "Gia Khanhs",
+            message: [
+                "Chúc các bạn nữ lớp 11TA5 một Ngày Quốc tế Phụ nữ 8/3 thật vui vẻ.",
+                "Chúc các bạn luôn xinh đẹp, tự tin và tràn đầy năng lượng mỗi ngày.",
+                "Mong rằng các bạn sẽ luôn hạnh phúc và nhận được thật nhiều yêu thương.",
+                "Chúc các bạn đạt được thật nhiều điểm cao và thành công trong học tập."
             ]
         },
 
@@ -90,17 +100,6 @@ const letterConfig = {
                 "Hy vọng bạn sẽ luôn nở rực rỡ và mang lại niềm vui cho mọi người xung quanh.",
                 "Chúc bạn một ngày 8/3 thật tuyệt!"
             ]
-        },
-
-        {
-            sender: "Gia Khanhs",
-            message: [
-"Chúc các bạn nữ lớp 11TA5 một Ngày Quốc tế Phụ nữ 8/3 thật vui vẻ.",
-"Chúc các bạn luôn xinh đẹp, tự tin và tràn đầy năng lượng mỗi ngày.",
-"Mong rằng các bạn sẽ luôn hạnh phúc và nhận được thật nhiều yêu thương.",
-"Chúc các bạn đạt được thật nhiều điểm cao và thành công trong học tập.",
-"Hy vọng mỗi ngày của các bạn đều tràn ngập niềm vui và những điều tốt đẹp."
-]
         }
 
     ],
@@ -120,4 +119,3 @@ const letterConfig = {
     ]
 
 };
-
