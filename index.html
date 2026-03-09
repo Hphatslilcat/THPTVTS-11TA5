@@ -674,12 +674,16 @@ document.getElementById('ok-btn').onclick = () => {
 
             setTimeout(() => {
                 typeWrite('letter-title', "🌹 Chúc mừng 8/3!", 40, () => {
-                    typeWrite('letter-greeting', greeting, 40, () => {
-                        const msg = Array.isArray(letter.message)
-                            ? letter.message.join("\n\n")
-                            : letter.message;
+                    // Inside your ok-btn click function:
+typeWrite('letter-greeting', greeting, 40, () => {
+    let msg = Array.isArray(letter.message)
+        ? letter.message.join("\n\n")
+        : letter.message;
 
-                        typeWrite('letter-body', msg, 25, () => {
+    // ADD THIS LINE BELOW to swap {name} with the real name!
+    msg = msg.replaceAll('{name}', name); 
+
+    typeWrite('letter-body', msg, 25, () => {
                             // Ensure the footer types after the body
                             typeWrite('letter-footer', `-- ${letter.sender} --`, 40);
                             
