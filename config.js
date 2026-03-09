@@ -3,7 +3,7 @@
 window.letterConfig = {
 const messageForGirls11TA5 = [
     {
-        sender: "Hội Con Trai 11TA5 🦾",
+        sender: "Hội Con Trai 11TA5",
         message: [
             "Gửi những bông hoa xinh đẹp nhất của tập thể 11TA5,",
             "Hôm nay là ngày của các bạn! Thay mặt cánh mày râu trong lớp, tụi mình chúc các bạn luôn rạng rỡ, tự tin và luôn là 'linh hồn' của lớp mình nhé.",
@@ -131,6 +131,7 @@ const messageForGirls11TA5 = [
         "Hôm nay là ngày đặc biệt dành cho {name},"
     ]
 };
+
 
 
 
