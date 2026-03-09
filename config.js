@@ -27,13 +27,32 @@ window.letterConfig = {
             }
         ],
         
-        // "NameHere": [ { sender: "", message: [""] } ]
+        "Tập Thể Nữ 11TA5": [
+        {
+            sender: "Hội Con Trai 11TA5 🦾",
+            message: [
+                "Gửi những bông hoa xinh đẹp nhất của tập thể 11TA5,",
+                "Hôm nay là ngày của các bạn! Thay mặt cánh mày râu trong lớp, tụi mình chúc các bạn luôn rạng rỡ, tự tin và luôn là 'linh hồn' của lớp mình nhé.",
+                "Cảm ơn các bạn đã luôn cùng tụi mình tạo nên những kỷ niệm học sinh thật đáng nhớ.",
+                "Chúc các bạn 8/3 ngập tràn quà, hoa và những điểm 10 chói lọi!"
+            ]
+        },
+        {
+            sender: "Lilcat 🐱",
+            message: [
+                "Skibidi! Gửi lời chào đến những cô gái tuyệt vời lớp 11TA5,",
+                "Lilcat biết rằng lớp mình có những bạn nữ vừa học giỏi lại vừa cá tính.",
+                "Chúc tập thể nữ 11TA5 luôn đoàn kết, mãi xinh tươi và đạt được mọi nguyện vọng trong năm học này nhé!",
+                "Hãy cùng nhau tận hưởng một ngày 8/3 thật trọn vẹn và hạnh phúc!"
+            ]
+        }
+    ]
     },
 
     // Letters for everyone else (randomly selected if name isn't in custom)
     default: [
         {
-            sender: "Nam 11TA5 🦾",
+            sender: "Nam 11TA5",
             message: [
                 "Thay mặt các bạn nam 11TA5, chúc {name} một ngày 8/3 thật rực rỡ.",
                 "Cảm ơn {name} đã là một mảnh ghép tuyệt vời của lớp mình.",
@@ -41,7 +60,7 @@ window.letterConfig = {
             ]
         },
         {
-            sender: "Nam 11TA5 🦾",
+            sender: "Nam 11TA5",
             message: [
                 "Chúc {name} hôm nay nhận được 'cơn mưa' quà và những lời chúc ngọt ngào nhất nhé.",
                 "Mong {name} luôn giữ vững phong độ, thi cử đỗ đạt và luôn tràn đầy niềm vui.",
@@ -87,3 +106,4 @@ window.letterConfig = {
         "Hôm nay là ngày đặc biệt dành cho {name},"
     ]
 };
+
