@@ -27,6 +27,15 @@ const messageForGirls11TA5 = [
             "Mong rằng các bạn sẽ luôn hạnh phúc và nhận được thật nhiều yêu thương.",
             "Chúc các bạn đạt được thật nhiều điểm cao và thành công trong học tập."
         ]
+    },
+    {
+        sender: "Thanh Tuấn",
+        message: [
+    "Nhân dịp 8/3,",
+    "Mình xin chúc tất cả các bạn nữ luôn xinh đẹp,",
+    "Dễ thương và tràn đầy niềm vui bên gia đình của mình.",
+    "Hy vọng các bạn sẽ có một ngày thật ý nghĩa và hạnh phúc!"
+]
     }
 ];
 
@@ -111,4 +120,5 @@ window.letterConfig = {
         "Hôm nay là ngày đặc biệt dành cho {name},"
     ]
 };
+
 
