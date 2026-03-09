@@ -694,31 +694,35 @@ document.getElementById('ok-btn').onclick = () => {
     }, 1500);
 };    /* ================= RESET ================= */
 
-function resetToMenu(){
-
+/* ================= RESET ================= */
+function resetToMenu() {
+    // 1. Clear old letter content so it's fresh for the next name
+    document.getElementById('letter-title').innerHTML = "";
+    document.getElementById('letter-greeting').innerHTML = "";
+    document.getElementById('letter-body').innerHTML = "";
+    document.getElementById('letter-footer').innerHTML = "";
+    
+    // 2. Close visuals
     document.getElementById('envelope-wrap').classList.remove('open');
-
     document.getElementById('blur-overlay').classList.remove('active');
 
-    document.getElementById('name-input').value="";
+    // 3. Reset input and UI
+    document.getElementById('name-input').value = "";
+    document.getElementById('input-area').style.display = 'none';
+    document.getElementById('start-btn').style.display = 'inline-block';
 
-    document.getElementById('input-area').style.display='none';
+    // 4. Update cat dialogue to your new text
+    document.getElementById('lilcat-dialog').innerText = "Bạn đã nhận thư chưa? Nếu chưa thì lại đây Lilcat đưa nè!";
 
-    document.getElementById('start-btn').style.display='inline-block';
-
-    document.getElementById('lilcat-dialog').innerText="Có một món quà khác cho bạn...";
-
+    // 5. Move cat back to starting position
     removeIntroWords();
-
-    const cat=document.getElementById('lilcat');
-
-    cat.style.left='-150px';
-    cat.style.top='-150px';
-    cat.style.transform='none';
+    const cat = document.getElementById('lilcat');
+    cat.style.left = '-150px';
+    cat.style.top = '-150px';
+    cat.style.transform = 'none';
 
     transitionTo('cat-scene');
 }
-
 /* ================= PAGE LOAD ================= */
 
 window.onload=()=>{
