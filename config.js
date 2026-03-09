@@ -90,6 +90,17 @@ const letterConfig = {
                 "Hy vọng bạn sẽ luôn nở rực rỡ và mang lại niềm vui cho mọi người xung quanh.",
                 "Chúc bạn một ngày 8/3 thật tuyệt!"
             ]
+        },
+
+        {
+            sender: "Gia Khanhs",
+            message: [
+"Chúc các bạn nữ lớp 11TA5 một Ngày Quốc tế Phụ nữ 8/3 thật vui vẻ.",
+"Chúc các bạn luôn xinh đẹp, tự tin và tràn đầy năng lượng mỗi ngày.",
+"Mong rằng các bạn sẽ luôn hạnh phúc và nhận được thật nhiều yêu thương.",
+"Chúc các bạn đạt được thật nhiều điểm cao và thành công trong học tập.",
+"Hy vọng mỗi ngày của các bạn đều tràn ngập niềm vui và những điều tốt đẹp."
+]
         }
 
     ],
@@ -109,3 +120,4 @@ const letterConfig = {
     ]
 
 };
+
