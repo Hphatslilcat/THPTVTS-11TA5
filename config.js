@@ -3,108 +3,92 @@
 window.letterConfig = {
 
     // Names that trigger special messages
+    // Note: The code is case-insensitive, so "Linh" or "linh" both work.
     specialNames: [
-        "test1",
-        "test2",
-        "test3"
+        "Linh",
+        "Trang",
+        "Mai"
     ],
 
-    // Special letters for specific names
+    // Special letters for specific people
     custom: {
-
-        "test1": {
+        "Linh": {
             sender: "Lilcat 🐱",
             message: [
-                "Gửi Linh,",
-                "Nhân ngày 8/3, chúc bạn luôn vui vẻ, hạnh phúc và đạt được thật nhiều điều tuyệt vời trong cuộc sống.",
-                "Hy vọng mỗi ngày của bạn đều tràn ngập tiếng cười và những điều tốt đẹp.",
-                "Cảm ơn vì đã luôn là một người bạn tuyệt vời!"
+                "Gửi {name} thân mến,",
+                "Nhân ngày 8/3, chúc {name} luôn vui vẻ, hạnh phúc và đạt được thật nhiều điều tuyệt vời trong cuộc sống.",
+                "Hy vọng mỗi ngày của {name} đều tràn ngập tiếng cười và những điều tốt đẹp nhất.",
+                "Cảm ơn {name} vì đã luôn là một người bạn tuyệt vời!"
             ]
         },
 
-        "test2": {
+        "Trang": {
             sender: "Lilcat 🐱",
             message: [
-                "Gửi Trang,",
-                "Chúc bạn một ngày 8/3 thật rực rỡ và tràn đầy niềm vui.",
-                "Mong rằng mọi ước mơ của bạn sẽ dần trở thành hiện thực.",
-                "Hãy luôn tự tin và tỏa sáng theo cách riêng của mình nhé!"
+                "Gửi {name},",
+                "Chúc {name} một ngày 8/3 thật rực rỡ và tràn đầy niềm vui bên gia đình và bạn bè nhé.",
+                "Mong rằng mọi ước mơ của {name} sẽ dần trở thành hiện thực trong năm nay.",
+                "Hãy luôn tự tin và tỏa sáng theo cách riêng của mình nhé {name}!"
             ]
         },
 
-        "test3": {
+        "Mai": {
             sender: "Lilcat 🐱",
             message: [
-                "Gửi Mai,",
-                "Chúc bạn có một ngày 8/3 thật ấm áp và nhiều niềm vui.",
-                "Hy vọng bạn sẽ luôn giữ được nụ cười xinh và nguồn năng lượng tích cực.",
-                "Chúc bạn học tốt, sống vui và luôn gặp nhiều may mắn!"
+                "Gửi {name} dễ thương,",
+                "Chúc {name} có một ngày 8/3 thật ấm áp và nhận được thật nhiều quà nha.",
+                "Hy vọng {name} sẽ luôn giữ được nụ cười xinh và nguồn năng lượng tích cực này.",
+                "Chúc {name} học tốt, sống vui và luôn gặp nhiều may mắn trên con đường sắp tới!"
             ]
         }
-
     },
 
     // Letters for everyone else (randomly selected)
     default: [
-
         {
             sender: "Nam 11TA5 🦾",
             message: [
-                "Thay mặt các bạn nam 11TA5, chúc bạn một ngày 8/3 rực rỡ.",
-                "Cảm ơn các bạn đã là những mảnh ghép tuyệt vời của lớp mình.",
-                "Chúc bạn luôn xinh đẹp, học giỏi và mãi là niềm tự hào của 11TA5!"
+                "Thay mặt các bạn nam 11TA5, chúc {name} một ngày 8/3 thật rực rỡ.",
+                "Cảm ơn {name} đã là một mảnh ghép tuyệt vời của lớp mình.",
+                "Chúc {name} luôn xinh đẹp, học giỏi và mãi là niềm tự hào của 11TA5 nhé!"
             ]
         },
-
         {
             sender: "Nam 11TA5 🦾",
             message: [
-                "Chúc các bạn nữ 11TA5 hôm nay nhận được 'cơn mưa' quà và lời chúc nhé.",
-                "Mong bạn luôn giữ vững phong độ, thi cử đỗ đạt và luôn vui tươi.",
-                "Hôm nay các bạn là nhất, không ai tranh giành đâu!"
+                "Chúc {name} hôm nay nhận được 'cơn mưa' quà và những lời chúc ngọt ngào nhất nhé.",
+                "Mong {name} luôn giữ vững phong độ, thi cử đỗ đạt và luôn tràn đầy niềm vui.",
+                "Hôm nay {name} là nhất, hội con trai không ai dám tranh giành đâu!"
             ]
         },
-
-        {
-            sender: "Nam 11TA5 🦾",
-            message: [
-                "Gửi tới bạn những lời chúc tốt đẹp nhất từ hội con trai 11TA5.",
-                "Chúc bạn ngày 8/3 không chỉ vui mà còn nhận được thật nhiều yêu thương.",
-                "Mãi là bông hoa xinh đẹp nhất của lớp mình nhé!"
-            ]
-        },
-
         {
             sender: "Gia Khanhs",
             message: [
-                "Chúc các bạn nữ lớp 11TA5 một Ngày Quốc tế Phụ nữ 8/3 thật vui vẻ.",
-                "Chúc các bạn luôn xinh đẹp, tự tin và tràn đầy năng lượng mỗi ngày.",
-                "Mong rằng các bạn sẽ luôn hạnh phúc và nhận được thật nhiều yêu thương.",
-                "Chúc các bạn đạt được thật nhiều điểm cao và thành công trong học tập."
+                "Chúc {name} một Ngày Quốc tế Phụ nữ 8/3 thật sự ý nghĩa.",
+                "Chúc {name} luôn xinh đẹp, tự tin và tràn đầy năng lượng mỗi khi đến lớp.",
+                "Mong rằng {name} sẽ luôn hạnh phúc và nhận được thật nhiều yêu thương từ mọi người.",
+                "Chúc {name} đạt được thật nhiều điểm cao và thành công trong mọi dự định!"
             ]
         },
-
         {
             sender: "Một người bí mật 🌸",
             message: [
-                "Có thể bạn không biết, nhưng bạn thật sự rất tuyệt vời.",
-                "Chúc bạn luôn hạnh phúc và gặp nhiều điều may mắn trong cuộc sống.",
-                "Chúc mừng ngày 8/3!"
+                "Có thể {name} không biết, nhưng trong mắt mọi người, {name} thật sự rất tuyệt vời.",
+                "Chúc {name} luôn hạnh phúc và gặp nhiều điều may mắn trong cuộc sống.",
+                "Chúc mừng ngày 8/3 nhé {name}!"
             ]
         },
-
         {
             sender: "Lilcat 🐱",
             message: [
-                "Mỗi người con gái đều giống như một bông hoa.",
-                "Hy vọng bạn sẽ luôn nở rực rỡ và mang lại niềm vui cho mọi người xung quanh.",
-                "Chúc bạn một ngày 8/3 thật tuyệt!"
+                "Mỗi người con gái đều giống như một bông hoa, và {name} cũng vậy.",
+                "Hy vọng {name} sẽ luôn nở rực rỡ và mang lại niềm vui cho mọi người xung quanh.",
+                "Chúc {name} có một ngày 8/3 tuyệt vời nhất từ trước đến nay!"
             ]
         }
-
     ],
 
-    // Random opening lines
+    // Random opening lines that appear above the message
     openings: [
         "Chúc mừng ngày 8/3, {name}!",
         "Dành cho một người đặc biệt mang tên {name},",
@@ -113,9 +97,6 @@ window.letterConfig = {
         "Chào ngày 8/3 thật xinh đẹp nhé {name},",
         "Tới {name}, người tuyệt vời của ngày hôm nay,",
         "Một chút yêu thương gửi đến {name},",
-        "Hôm nay là ngày đặc biệt dành cho {name},",
-        "Xin gửi lời chúc tốt đẹp nhất đến {name},",
-        "Chúc {name} có một ngày 8/3 thật đáng nhớ!"
+        "Hôm nay là ngày đặc biệt dành cho {name},"
     ]
-
 };
