@@ -1,11 +1,26 @@
 // config.js
 
 window.letterConfig = {
-
-    // Names that trigger special messages
-    specialNames: [
-        "test1"
-    ],
+const messageForGirls11TA5 = [
+    {
+        sender: "Hội Con Trai 11TA5 🦾",
+        message: [
+            "Gửi những bông hoa xinh đẹp nhất của tập thể 11TA5,",
+            "Hôm nay là ngày của các bạn! Thay mặt cánh mày râu trong lớp, tụi mình chúc các bạn luôn rạng rỡ, tự tin và luôn là 'linh hồn' của lớp mình nhé.",
+            "Cảm ơn các bạn đã luôn cùng tụi mình tạo nên những kỷ niệm học sinh thật đáng nhớ.",
+            "Chúc các bạn 8/3 ngập tràn quà, hoa và những điểm 10 chói lọi!"
+        ]
+    },
+    {
+        sender: "Lilcat 🐱",
+        message: [
+            "Skibidi! Gửi lời chào đến những cô gái tuyệt vời lớp 11TA5,",
+            "Chúc tập thể nữ 11TA5 luôn đoàn kết, mãi xinh tươi và đạt được mọi nguyện vọng nhé!",
+            "Hãy cùng nhau tận hưởng một ngày 8/3 thật trọn vẹn và hạnh phúc!"
+        ]
+    }
+];
+    specialNames: ["Tập Thể Nữ 11TA5", "11TA5", "Cả lớp", "Mấy bà 11TA5"],
 
     // Special letters for specific people
     // Add more names here following the "test1" format!
@@ -106,4 +121,5 @@ window.letterConfig = {
         "Hôm nay là ngày đặc biệt dành cho {name},"
     ]
 };
+
 
