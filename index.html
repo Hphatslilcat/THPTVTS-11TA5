@@ -628,7 +628,6 @@ document.getElementById('start-btn').onclick=()=>{
 };
 
 /* ================= OPEN LETTER ================= */
-/* ================= OPEN LETTER ================= */
 document.getElementById('ok-btn').onclick = () => {
     const name = document.getElementById('name-input').value.trim();
     if (!name) return;
@@ -647,27 +646,26 @@ document.getElementById('ok-btn').onclick = () => {
         30
     );
 
-    const nameLower = name.toLowerCase();
+    // Chuyển tên nhập vào sang chữ thường để so sánh
+    const nameLower = name.toLowerCase().trim();
     let letter = null;
 
-    // 1. Find if the name exists in custom config
+    // 1. Tìm key trong custom (không phân biệt hoa thường)
     const specialKey = Object.keys(config.custom || {}).find(
-        key => key.toLowerCase() === nameLower
+        key => key.toLowerCase().trim() === nameLower
     );
 
     if (specialKey) {
         const customData = config.custom[specialKey];
         
-        // FIX: Check if there are multiple messages (Array) for this person
+        // Nếu là mảng thì chọn ngẫu nhiên, nếu là object thì lấy luôn
         if (Array.isArray(customData)) {
-            // Pick one random message from their list
             letter = customData[Math.floor(Math.random() * customData.length)];
         } else {
-            // Only one message exists
             letter = customData;
         }
     } else {
-        // 2. Fallback to random default message
+        // 2. Nếu không có custom riêng, chọn ngẫu nhiên từ danh sách mặc định
         const defaults = config.default || [];
         letter = defaults[Math.floor(Math.random() * defaults.length)];
     }
@@ -686,17 +684,20 @@ document.getElementById('ok-btn').onclick = () => {
             setTimeout(() => {
                 typeWrite('letter-title', "🌹 Chúc mừng 8/3!", 40, () => {
                     typeWrite('letter-greeting', greeting, 40, () => {
-                        // Prepare the message text
+                        
+                        // Xử lý nội dung tin nhắn (hỗ trợ cả mảng dòng hoặc chuỗi đơn)
                         let msg = Array.isArray(letter.message)
                             ? letter.message.join("\n\n")
                             : letter.message;
 
-                        // Replace {name} placeholder
+                        // Thay thế {name} bằng tên thật của người dùng
                         msg = msg.replaceAll('{name}', name); 
 
                         typeWrite('letter-body', msg, 25, () => {
+                            // Ghi tên người gửi vào footer
                             typeWrite('letter-footer', `-- ${letter.sender} --`, 40);
                             
+                            // Tự động cuộn xuống nếu thư quá dài
                             const contentDiv = document.querySelector('.letter-content');
                             contentDiv.scrollTo({ top: contentDiv.scrollHeight, behavior: 'smooth' });
                         });
@@ -705,8 +706,7 @@ document.getElementById('ok-btn').onclick = () => {
             }, 1200);
         }, 800);
     }, 1500);
-};
-/* ================= RESET ================= */
+};/* ================= RESET ================= */
 function resetToMenu() {
     // 1. Clear old letter content so it's fresh for the next name
     document.getElementById('letter-title').innerHTML = "";
@@ -769,3 +769,4 @@ window.onresize=initBg;
 </script>
 </body>
 </html>
+
