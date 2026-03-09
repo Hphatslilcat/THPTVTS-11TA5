@@ -3,47 +3,34 @@
 window.letterConfig = {
 
     // Names that trigger special messages
-    // Note: The code is case-insensitive, so "Linh" or "linh" both work.
     specialNames: [
-        "Linh",
-        "Trang",
-        "Mai"
+        "test1"
     ],
 
     // Special letters for specific people
+    // Add more names here following the "test1" format!
     custom: {
-        "Linh": {
-            sender: "Lilcat 🐱",
-            message: [
-                "Gửi {name} thân mến,",
-                "Nhân ngày 8/3, chúc {name} luôn vui vẻ, hạnh phúc và đạt được thật nhiều điều tuyệt vời trong cuộc sống.",
-                "Hy vọng mỗi ngày của {name} đều tràn ngập tiếng cười và những điều tốt đẹp nhất.",
-                "Cảm ơn {name} vì đã luôn là một người bạn tuyệt vời!"
-            ]
-        },
-
-        "Trang": {
-            sender: "Lilcat 🐱",
-            message: [
-                "Gửi {name},",
-                "Chúc {name} một ngày 8/3 thật rực rỡ và tràn đầy niềm vui bên gia đình và bạn bè nhé.",
-                "Mong rằng mọi ước mơ của {name} sẽ dần trở thành hiện thực trong năm nay.",
-                "Hãy luôn tự tin và tỏa sáng theo cách riêng của mình nhé {name}!"
-            ]
-        },
-
-        "Mai": {
-            sender: "Lilcat 🐱",
-            message: [
-                "Gửi {name} dễ thương,",
-                "Chúc {name} có một ngày 8/3 thật ấm áp và nhận được thật nhiều quà nha.",
-                "Hy vọng {name} sẽ luôn giữ được nụ cười xinh và nguồn năng lượng tích cực này.",
-                "Chúc {name} học tốt, sống vui và luôn gặp nhiều may mắn trên con đường sắp tới!"
-            ]
-        }
+        "test1": [
+            {
+                sender: "Lilcat 🐱",
+                message: [
+                    "Đây là tin nhắn bí mật số 1 dành cho {name}!",
+                    "Chúc bạn một ngày 8/3 thật tuyệt vời và đầy bất ngờ."
+                ]
+            },
+            {
+                sender: "Lilcat 🐱",
+                message: [
+                    "Bất ngờ chưa {name}! Đây là tin nhắn biến hóa số 2.",
+                    "Hy vọng mỗi lần bạn quay lại, bạn sẽ thấy một niềm vui mới."
+                ]
+            }
+        ],
+        
+        // "NameHere": [ { sender: "", message: [""] } ]
     },
 
-    // Letters for everyone else (randomly selected)
+    // Letters for everyone else (randomly selected if name isn't in custom)
     default: [
         {
             sender: "Nam 11TA5 🦾",
