@@ -627,77 +627,68 @@ document.getElementById('start-btn').onclick=()=>{
     );
 };
 
+/* ================= GLOBAL TRACKING FOR ANTI-REPEAT ================= */
+let lastMessageIndexes = {}; 
+
 /* ================= OPEN LETTER ================= */
 document.getElementById('ok-btn').onclick = () => {
-    const name = document.getElementById('name-input').value.trim();
-    if (!name) return;
+    const nameInput = document.getElementById('name-input').value.trim();
+    if (!nameInput) return;
 
     const config = window.letterConfig;
-    if (!config) {
-        alert("Lỗi: Không tìm thấy file config.js!");
-        return;
-    }
+    if (!config) return;
 
     document.getElementById('input-area').style.display = 'none';
 
-    typeWrite(
-        'lilcat-dialog',
-        `Có thư cho ${name} nè! Đợi xíu...`,
-        30
-    );
+    typeWrite('lilcat-dialog', `Có thư cho ${nameInput} nè! Đợi xíu...`, 30);
 
-    // Chuyển tên nhập vào sang chữ thường để so sánh
-    const nameLower = name.toLowerCase().trim();
-    let letter = null;
+    const nameLower = nameInput.toLowerCase();
+    
+    // 1. TÌM POOL TIN NHẮN
+    const customKey = Object.keys(config.custom).find(k => k.toLowerCase() === nameLower);
+    let messagePool = customKey ? config.custom[customKey] : config.default;
+    if (!Array.isArray(messagePool)) messagePool = [messagePool];
 
-    // 1. Tìm key trong custom (không phân biệt hoa thường)
-    const specialKey = Object.keys(config.custom || {}).find(
-        key => key.toLowerCase().trim() === nameLower
-    );
-
-    if (specialKey) {
-        const customData = config.custom[specialKey];
-        
-        // Nếu là mảng thì chọn ngẫu nhiên, nếu là object thì lấy luôn
-        if (Array.isArray(customData)) {
-            letter = customData[Math.floor(Math.random() * customData.length)];
-        } else {
-            letter = customData;
+    // 2. CHỌN TIN NHẮN (CHỐNG LẶP)
+    const poolKey = customKey || "default_pool";
+    let randomIndex = Math.floor(Math.random() * messagePool.length);
+    
+    if (messagePool.length > 1) {
+        while (randomIndex === lastMessageIndexes[poolKey]) {
+            randomIndex = Math.floor(Math.random() * messagePool.length);
         }
+        lastMessageIndexes[poolKey] = randomIndex;
+    }
+    const letter = messagePool[randomIndex];
+
+    // 3. XÁC ĐỊNH LỜI CHÀO (GREETING)
+    // Nếu tin nhắn (letter) có thuộc tính opening, dùng nó. Nếu không, bốc random từ config.openings.
+    let greeting = "";
+    if (letter.opening) {
+        greeting = letter.opening.replaceAll('{name}', nameInput);
     } else {
-        // 2. Nếu không có custom riêng, chọn ngẫu nhiên từ danh sách mặc định
-        const defaults = config.default || [];
-        letter = defaults[Math.floor(Math.random() * defaults.length)];
+        const randomOp = config.openings[Math.floor(Math.random() * config.openings.length)];
+        greeting = randomOp.replaceAll('{name}', nameInput);
     }
 
-    const greeting = getRandomOpening(name);
-
+    // 4. HIỆU ỨNG CHUYỂN CẢNH VÀ VIẾT CHỮ
     setTimeout(() => {
         transitionTo('letter-scene');
         document.getElementById('blur-overlay').classList.add('active');
 
         setTimeout(() => {
             document.getElementById('envelope-wrap').classList.add('open');
-            const letterCard = document.querySelector('.letter-card');
-            letterCard.style.zIndex = '100';
-
+            
             setTimeout(() => {
                 typeWrite('letter-title', "🌹 Chúc mừng 8/3!", 40, () => {
                     typeWrite('letter-greeting', greeting, 40, () => {
                         
-                        // Xử lý nội dung tin nhắn (hỗ trợ cả mảng dòng hoặc chuỗi đơn)
-                        let msg = Array.isArray(letter.message)
-                            ? letter.message.join("\n\n")
-                            : letter.message;
-
-                        // Thay thế {name} bằng tên thật của người dùng
-                        msg = msg.replaceAll('{name}', name); 
+                        let msg = Array.isArray(letter.message) ? letter.message.join("\n\n") : letter.message;
+                        msg = msg.replaceAll('{name}', nameInput);
 
                         typeWrite('letter-body', msg, 25, () => {
-                            // Ghi tên người gửi vào footer
-                            typeWrite('letter-footer', `-- ${letter.sender} --`, 40);
+                            typeWrite('letter-footer', `-- ${letter.sender || "Người gửi"} --`, 40);
                             
-                            // Tự động cuộn xuống nếu thư quá dài
                             const contentDiv = document.querySelector('.letter-content');
                             contentDiv.scrollTo({ top: contentDiv.scrollHeight, behavior: 'smooth' });
                         });
@@ -706,33 +697,34 @@ document.getElementById('ok-btn').onclick = () => {
             }, 1200);
         }, 800);
     }, 1500);
-};/* ================= RESET ================= */
+};/* ================= RESET FUNCTION ================= */
 function resetToMenu() {
-    // 1. Clear old letter content so it's fresh for the next name
+    // 1. Xóa nội dung cũ để thư mới không bị chồng chéo
     document.getElementById('letter-title').innerHTML = "";
     document.getElementById('letter-greeting').innerHTML = "";
     document.getElementById('letter-body').innerHTML = "";
     document.getElementById('letter-footer').innerHTML = "";
     
-    // 2. Close visuals
+    // 2. Đóng các hiệu ứng hình ảnh
     document.getElementById('envelope-wrap').classList.remove('open');
     document.getElementById('blur-overlay').classList.remove('active');
 
-    // 3. Reset input and UI
+    // 3. Reset lại ô nhập tên và nút bấm
     document.getElementById('name-input').value = "";
     document.getElementById('input-area').style.display = 'none';
     document.getElementById('start-btn').style.display = 'inline-block';
 
-    // 4. Update cat dialogue to your new text
+    // 4. Cập nhật lại lời thoại của chú mèo
     document.getElementById('lilcat-dialog').innerText = "Bạn đã nhận thư chưa? Nếu chưa thì lại đây Lilcat đưa nè!";
 
-    // 5. Move cat back to starting position
+    // 5. Đưa chú mèo về vị trí ban đầu (ẩn đi hoặc reset vị trí)
     removeIntroWords();
     const cat = document.getElementById('lilcat');
     cat.style.left = '-150px';
     cat.style.top = '-150px';
     cat.style.transform = 'none';
 
+    // 6. Quay về màn hình chọn tên
     transitionTo('cat-scene');
 }
 /* ================= PAGE LOAD ================= */
@@ -769,4 +761,3 @@ window.onresize=initBg;
 </script>
 </body>
 </html>
-
