@@ -18,7 +18,17 @@ const messageForGirls11TA5 = [
             "Chúc tập thể nữ 11TA5 luôn đoàn kết, mãi xinh tươi và đạt được mọi nguyện vọng nhé!",
             "Hãy cùng nhau tận hưởng một ngày 8/3 thật trọn vẹn và hạnh phúc!"
         ]
-    }
+    },
+    {
+            sender: "Gia Khanhs",
+            message: [
+"Chúc các bạn nữ lớp 11TA5 một Ngày Quốc tế Phụ nữ 8/3 thật vui vẻ.",
+"Chúc các bạn luôn xinh đẹp, tự tin và tràn đầy năng lượng mỗi ngày.",
+"Mong rằng các bạn sẽ luôn hạnh phúc và nhận được thật nhiều yêu thương.",
+"Chúc các bạn đạt được thật nhiều điểm cao và thành công trong học tập.",
+"Hy vọng mỗi ngày của các bạn đều tràn ngập niềm vui và những điều tốt đẹp."
+]
+        },
 ];
     specialNames: ["Tập Thể Nữ 11TA5", "11TA5", "Cả lớp", "Mấy bà 11TA5"],
 
@@ -121,5 +131,6 @@ const messageForGirls11TA5 = [
         "Hôm nay là ngày đặc biệt dành cho {name},"
     ]
 };
+
 
 
