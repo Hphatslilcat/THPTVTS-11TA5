@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>8/3 Surprise - Lilcat</title>
+    <title>8/3 Surprise - Lilcat Gng Edition</title>
     <script src="config.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap');
@@ -617,12 +617,12 @@ document.getElementById('start-btn').onclick=()=>{
 
 /* ================= OPEN LETTER ================= */
 
+/* ================= OPEN LETTER ================= */
 document.getElementById('ok-btn').onclick = () => {
-
     const name = document.getElementById('name-input').value.trim();
-    if(!name) return;
+    if (!name) return;
 
-    document.getElementById('input-area').style.display='none';
+    document.getElementById('input-area').style.display = 'none';
 
     typeWrite(
         'lilcat-dialog',
@@ -631,77 +631,51 @@ document.getElementById('ok-btn').onclick = () => {
     );
 
     const nameLower = name.toLowerCase();
-
-    const specialMatch = window.letterConfig?.specialNames?.find(
-        n => n.toLowerCase() === nameLower
+    
+    // 1. Find the key in letterConfig.custom that matches the input name (case-insensitive)
+    const specialKey = Object.keys(window.letterConfig.custom).find(
+        key => key.toLowerCase() === nameLower
     );
 
     let letter;
 
-    if(specialMatch){
-
-        const upperName = specialMatch.charAt(0).toUpperCase() + specialMatch.slice(1).toLowerCase();
-
-        letter = window.letterConfig.custom[upperName] || window.letterConfig.default[0];
-
-    }else{
-
-        const defaultLetters = window.letterConfig?.default || [
-            {
-                sender:"Lilcat",
-                message:["Chúc bạn một ngày 8/3 thật ý nghĩa!","Hãy luôn tỏa sáng nhé!"]
-            }
-        ];
-
-        letter = defaultLetters[Math.floor(Math.random()*defaultLetters.length)];
+    if (specialKey) {
+        // Use the custom letter if a match is found
+        letter = window.letterConfig.custom[specialKey];
+    } else {
+        // Otherwise, grab a random one from the default list in config.js
+        const defaultLetters = window.letterConfig.default;
+        letter = defaultLetters[Math.floor(Math.random() * defaultLetters.length)];
     }
 
     const greeting = getRandomOpening(name);
 
     /* TRANSITION TO LETTER */
-
     setTimeout(() => {
-
         transitionTo('letter-scene');
-
         document.getElementById('blur-overlay').classList.add('active');
 
         setTimeout(() => {
-
             document.getElementById('envelope-wrap').classList.add('open');
-
             const letterCard = document.querySelector('.letter-card');
-
             letterCard.style.zIndex = '100';
 
             setTimeout(() => {
-
-                typeWrite('letter-title',"🌹 Chúc mừng 8/3!",40,()=>{
-
-                    typeWrite('letter-greeting',greeting,40,()=>{
-
+                typeWrite('letter-title', "🌹 Chúc mừng 8/3!", 40, () => {
+                    typeWrite('letter-greeting', greeting, 40, () => {
                         const msg = Array.isArray(letter.message)
                             ? letter.message.join("\n\n")
                             : letter.message;
 
-                        typeWrite('letter-body',msg,25,()=>{
-
-                            typeWrite('letter-footer',`-- ${letter.sender} --`,40);
-
+                        typeWrite('letter-body', msg, 25, () => {
+                            typeWrite('letter-footer', `-- ${letter.sender} --`, 40);
                         });
-
                     });
-
                 });
-
-            },1200);
-
-        },800);
-
-    },1500);
-
-};
-/* ================= RESET ================= */
+            }, 1200);
+        }, 800);
+    }, 1500);
+};/* ================= RESET ================= */
 
 function resetToMenu(){
 
@@ -761,5 +735,4 @@ window.onload=()=>{
 window.onresize=initBg;
 </script>
 </body>
-
 </html>
