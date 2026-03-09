@@ -616,11 +616,15 @@ document.getElementById('start-btn').onclick=()=>{
 };
 
 /* ================= OPEN LETTER ================= */
-
-/* ================= OPEN LETTER ================= */
 document.getElementById('ok-btn').onclick = () => {
     const name = document.getElementById('name-input').value.trim();
     if (!name) return;
+
+    // Safety check: Make sure config is loaded
+    if (!window.letterConfig) {
+        console.error("Config not found!");
+        return;
+    }
 
     document.getElementById('input-area').style.display = 'none';
 
@@ -632,19 +636,20 @@ document.getElementById('ok-btn').onclick = () => {
 
     const nameLower = name.toLowerCase();
     
-    // 1. Find the key in letterConfig.custom that matches the input name (case-insensitive)
-    const specialKey = Object.keys(window.letterConfig.custom).find(
+    // Check custom names first
+    let letter = null;
+    const customEntries = window.letterConfig.custom || {};
+    
+    // Find key in custom object
+    const specialKey = Object.keys(customEntries).find(
         key => key.toLowerCase() === nameLower
     );
 
-    let letter;
-
     if (specialKey) {
-        // Use the custom letter if a match is found
-        letter = window.letterConfig.custom[specialKey];
+        letter = customEntries[specialKey];
     } else {
-        // Otherwise, grab a random one from the default list in config.js
-        const defaultLetters = window.letterConfig.default;
+        // Fallback to random default
+        const defaultLetters = window.letterConfig.default || [];
         letter = defaultLetters[Math.floor(Math.random() * defaultLetters.length)];
     }
 
@@ -675,7 +680,8 @@ document.getElementById('ok-btn').onclick = () => {
             }, 1200);
         }, 800);
     }, 1500);
-};/* ================= RESET ================= */
+};
+    /* ================= RESET ================= */
 
 function resetToMenu(){
 
@@ -736,3 +742,4 @@ window.onresize=initBg;
 </script>
 </body>
 </html>
+
