@@ -192,35 +192,37 @@ z-index:35;
 
 /* LETTER */
 
-.letter-card{
-position:absolute;
+/* LETTER */
+.letter-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
 
-top:50%;
-left:50%;
+    /* Increased width and height */
+    width: 95%; 
+    max-width: 500px; /* Bigger max width */
+    height: auto;
+    max-height: 85vh; /* Allows it to take up more screen height */
 
-transform:translate(-50%, -50%) scale(0.85);
+    background: #fff;
+    border-radius: 20px;
+    padding: clamp(25px, 6vw, 40px); /* More breathing room */
+    box-sizing: border-box;
 
-width:90%;
-max-width:420px;
-max-height:75vh;
+    box-shadow: var(--shadow);
+    border: 8px double #fce4ec;
 
-background:#fff;
-border-radius:18px;
-
-padding:clamp(20px,5vw,30px);
-box-sizing:border-box;
-
-box-shadow:var(--shadow);
-border:6px double #fce4ec;
-
-display:flex;
-flex-direction:column;
-
-opacity:0;
-transition:1s cubic-bezier(.175,.885,.32,1.275);
-
-z-index:120;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: 1s cubic-bezier(.175,.885,.32,1.275);
+    z-index: 120;
 }
+
+
+
+
 
 .envelope-wrapper.open .letter-card{
 transform:translate(-50%, -50%) scale(1);
@@ -229,12 +231,17 @@ opacity:1;
 
 /* LETTER SCROLL */
 
-.letter-content{
-overflow-y:auto;
-text-align:left;
-padding-right:10px;
-line-height:1.8;
-margin:15px 0;
+/* LETTER CONTENT SCROLLING */
+.letter-content {
+    overflow-y: auto;
+    text-align: left;
+    padding-right: 15px;
+    line-height: 1.6;
+    margin: 15px 0;
+    
+    /* Font adjustments for readability */
+    font-size: 1.05rem; 
+    color: #444;
 }
 
 .letter-content::-webkit-scrollbar{
@@ -245,7 +252,12 @@ width:4px;
 background:var(--accent-pink);
 border-radius:10px;
 }
-
+/* Make sure the text doesn't hit the bottom of the card while scrolling */
+.letter-content::after {
+    content: "";
+    display: block;
+    height: 20px;
+}
 /* DARK BACKGROUND */
 
 .blur-overlay{
@@ -616,12 +628,10 @@ document.getElementById('start-btn').onclick=()=>{
 };
 
 /* ================= OPEN LETTER ================= */
-/* ================= OPEN LETTER ================= */
 document.getElementById('ok-btn').onclick = () => {
     const name = document.getElementById('name-input').value.trim();
     if (!name) return;
 
-    // Look for the config in the global window
     const config = window.letterConfig;
 
     if (!config) {
@@ -640,7 +650,6 @@ document.getElementById('ok-btn').onclick = () => {
     const nameLower = name.toLowerCase();
     let letter = null;
 
-    // Find custom names
     const specialKey = Object.keys(config.custom || {}).find(
         key => key.toLowerCase() === nameLower
     );
@@ -648,14 +657,12 @@ document.getElementById('ok-btn').onclick = () => {
     if (specialKey) {
         letter = config.custom[specialKey];
     } else {
-        // Fallback to random default from config.js
         const defaults = config.default || [];
         letter = defaults[Math.floor(Math.random() * defaults.length)];
     }
 
     const greeting = getRandomOpening(name);
 
-    /* TRANSITION TO LETTER */
     setTimeout(() => {
         transitionTo('letter-scene');
         document.getElementById('blur-overlay').classList.add('active');
@@ -673,15 +680,19 @@ document.getElementById('ok-btn').onclick = () => {
                             : letter.message;
 
                         typeWrite('letter-body', msg, 25, () => {
+                            // Ensure the footer types after the body
                             typeWrite('letter-footer', `-- ${letter.sender} --`, 40);
+                            
+                            // Simple auto-scroll to show the end of long letters
+                            const contentDiv = document.querySelector('.letter-content');
+                            contentDiv.scrollTo({ top: contentDiv.scrollHeight, behavior: 'smooth' });
                         });
                     });
                 });
             }, 1200);
         }, 800);
     }, 1500);
-};
-    /* ================= RESET ================= */
+};    /* ================= RESET ================= */
 
 function resetToMenu(){
 
@@ -742,5 +753,4 @@ window.onresize=initBg;
 </script>
 </body>
 </html>
-
 
